@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'MfIot',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'MIot'),
     );
   }
 }
@@ -52,28 +52,54 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _incrementCounter() {
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
+      
       _counter++;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+    
+    return DefaultTabController(
+      length: 2,
+      child:  Scaffold(
+        appBar: AppBar(
+        //This part is related to the tabs added under the AppBar, which has the Home Icon and List Icon relatively
+        bottom: const TabBar(
+          indicatorColor: Colors.black87,
+          indicatorWeight: 3,
+          tabs: [
+            Tab(icon: Icon(Icons.home),text: 'Home',),
+            Tab(icon: Icon(Icons.list), text: 'My Devices',)
+          ],),
+
+
+        toolbarOpacity: 0.7 ,
+        toolbarTextStyle: const TextStyle(fontStyle: FontStyle.normal),
+        title: Text(widget.title), 
+        backgroundColor: Colors.black,
+        elevation: 20,
+        titleSpacing: 20,
+
+
+        leading: IconButton(
+          iconSize: 36,
+          icon: const Icon(Icons.help),
+          onPressed: () => {
+            // ignore: avoid_print
+            print('Bangdo pai')
+          },
+        ),
+        
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Colors.red, Colors.blueGrey],
+              begin: Alignment.bottomRight,
+              end: Alignment.topLeft)
+          ),
+          ),
+        
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
@@ -110,6 +136,7 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
+    )
     );
   }
 }
